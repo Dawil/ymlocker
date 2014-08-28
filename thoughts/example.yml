@@ -1,0 +1,49 @@
+# Example yaml config file for a project
+#
+# Simple fig example:
+# web:
+#   build: .
+#   links:
+#    - db
+#   ports:
+#     - "8000:8000"
+#     - "49100:22"
+# db:
+#   image: postgres
+
+## Fig example using multiple images
+# db:
+#   image: postgres
+# guard:
+#   image: ymlocker-dev
+#   command: bundle exec guard
+#   volumes:
+#     - <%= `pwd` %>:/usr/src/app
+#   links:
+#     - notifier
+# notifier:
+#   image: ymlocker-dev
+#   command: iwatch .guard_result -- cat .guard_result | ./notifier.rb | xargs notify-send
+# web:
+#   image: ymlocker-prod
+#   command: rails s
+# devweb:
+#   image: ymlocker-debug
+#   command: rails s
+
+## Ymlocker example building multiple images
+# Note that debug likely depends on dev but I think
+# it wouldn't be too much to read the first line of 
+# a dockerfile and compare the image name with the
+# list in the ymlocker file
+ymlocker-dev:
+  file: dockerfiles/dev
+  context: .
+ymlocker-prod:
+  file: dockfiles/prod
+  context: .
+  tag: companyname/ymlocker:<%= ENV['YMLOCKER_VERSION'] %>
+ymlocker-debug:
+  file: dockerfiles/debug
+  context: .
+

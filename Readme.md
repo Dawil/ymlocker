@@ -31,3 +31,16 @@ while true; do inotifywait -e close_write,moved_to,create .guard_result; cat .gu
 That depends on how many dependencies there are. However the point of this gem is to provide a nicer interface to all this. Fig already does this somewhat but there are some missing features that I want so I'll practice a little while I make my version.
 
 As the project progresses I'll replace the above commands with simpler alternatives.
+
+## Todo
+
+Everything.
+
+- [ ] find out a good way to test a thor tool
+- [ ] flesh out a yml format
+- [ ] consider ruby docker clients (homemade or otherwise)
+- [ ] decide how program state (running containers, etc) is stored (or go stateless)
+- [ ] decide what parts of fig to not change
+- [ ] decide what parts of fig need to change
+
+Also should dogfood this at some point.
